@@ -30,13 +30,15 @@ ifneq ($(TARGET_BUILD_VARIANT),eng)
 ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
 endif
 
-# Backup Tool
-ifneq ($(WITH_GMS),true)
+# Boot Animantion
+# These packages are excluded from user builds
+ifneq ($(PRODUCT_DEVICE),falcon)
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/aosparadox/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/aosparadox/prebuilt/common/bin/50-cm.sh:system/addon.d/50-cm.sh \
-    vendor/aosparadox/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
+endif
+ifneq ($(PRODUCT_DEVICE),bacon)
+PRODUCT_COPY_FILES += \
+    vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
 
 # init.d support
