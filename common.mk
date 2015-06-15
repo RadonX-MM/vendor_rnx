@@ -1,17 +1,8 @@
-PRODUCT_BRAND ?= cyanogenmod
-
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
-ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.clientidbase=android-google
-else
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.google.clientidbase=$(PRODUCT_GMS_CLIENTID_BASE)
-endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
+    ro.com.google.clientidbase=android-google \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
     ro.com.android.wifi-watchlist=GoogleGuest \
@@ -25,13 +16,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Thank you, please drive thru!
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
-ifneq ($(TARGET_BUILD_VARIANT),eng)
-# Enable ADB authentication
-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
-endif
-
 # Boot Animantion
-# These packages are excluded from user builds
 ifneq ($(PRODUCT_DEVICE),falcon)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
@@ -43,7 +28,9 @@ endif
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/aosparadox/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/aosparadox/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/aosparadox/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -53,79 +40,59 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-
-# Required packages
+# Misc packages
 PRODUCT_PACKAGES += \
-    Development \
+    BluetoothExt \
     LatinIME \
-    BluetoothExt
+    Launcher3 \
+    libemoji \
+    Terminal
 
-# Optional packages
+# Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
-    VoicePlus \
-    Basic \
-    libemoji
+    libstagefright_soft_ffmpegadec \
+    libstagefright_soft_ffmpegvdec \
+    libFFmpegExtractor \
+    libnamparser
 
-# Custom packages
+# Live Wallpapers and more Daydream packages
 PRODUCT_PACKAGES += \
-    Launcher3
+    Galaxy4 \
+    HoloSpiralWallpaper \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    MagicSmokeWallpapers \
+    NoiseField \
+    PhaseBeam \
+    VisualizationWallpapers \
+    PhotoTable \
+    SoundRecorder \
+    PhotoPhase
 
-# Extra tools
+# Telephony packages
 PRODUCT_PACKAGES += \
-    libsepol \
-    e2fsck \
-    mke2fs \
-    tune2fs \
-    bash \
-    nano \
-    htop \
-    powertop \
-    lsof \
-    mount.exfat \
-    fsck.exfat \
-    mkfs.exfat \
-    mkfs.f2fs \
-    fsck.f2fs \
-    fibmap.f2fs \
-    ntfsfix \
-    ntfs-3g \
-    gdbserver \
-    micro_bench \
-    oprofiled \
-    sqlite3 \
-    strace
+    CellBroadcastReceiver \
+    Mms \
+    Stk
 
-# Openssh
+# Mms depends on SoundRecorder for recorded audio messages
 PRODUCT_PACKAGES += \
-    scp \
-    sftp \
-    ssh \
-    sshd \
-    sshd_config \
-    ssh-keygen \
-    start-ssh
+    SoundRecorder
 
-# rsync
-PRODUCT_PACKAGES += \
-    rsync
+# World APN list
+PRODUCT_COPY_FILES += \
+    vendor/aosparadox/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
-# These packages are excluded from user builds
-ifneq ($(TARGET_BUILD_VARIANT),user)
-PRODUCT_PACKAGES += \
-    procmem \
-    procrank \
-    su
-endif
+# Selective SPN list for operator number who has the problem.
+PRODUCT_COPY_FILES += \
+    vendor/aosparadox/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.root_access=0
-
-PRODUCT_PACKAGE_OVERLAYS += vendor/aosparadox/overlay/common
-
+# Overlays & Include LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += \
+	vendor/aosparadox/overlay/common \
+	vendor/aosparadox/overlay/dictionaries
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
--include $(WORKSPACE)/build_env/image-auto-bits.mk
-
-$(call prepend-product-if-exists, vendor/extra/product.mk)
+$(call inherit-product-if-exists, vendor/extra/product.mk)
