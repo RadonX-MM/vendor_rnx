@@ -11,9 +11,6 @@
 /system/etc/init.d/90userinit           u:object_r:userinit_exec:s0
 /data/local/userinit.sh                 u:object_r:userinit_data_exec:s0
 
-# For minivold in recovery
-/sbin/minivold            u:object_r:vold_exec:s0
-
 #############################
 # performance-related sysfs files (CM)
 /sys/devices/system/cpu.*/cpufreq(/.*)? --  u:object_r:sysfs_devices_system_cpu:s0
@@ -23,11 +20,5 @@
 /data/misc/radio(/.*)?      u:object_r:radio_data_file:s0
 
 #############
-# Superuser's control sockets
-/dev/socket/su-daemon(/.*)?   u:object_r:superuser_device:s0
-
 # Expansion of these hooks is a bit unconventional
 /cache/com.cyanogenmod.keyhandler.dex   u:object_r:dalvikcache_data_file:s0
-
-# Lockscreen wallpaper
-/data/system/users/[0-9]+/keyguard_wallpaper   u:object_r:wallpaper_file:s0
