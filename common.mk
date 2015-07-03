@@ -17,11 +17,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
 # Boot Animantion
-ifneq ($(filter falcon titan,$(PRODUCT_DEVICE)),)
+ifneq ($(PRODUCT_DEVICE),falcon)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
 endif
-ifneq ($(filter bacon,$(PRODUCT_DEVICE)),)
+ifneq ($(PRODUCT_DEVICE),titan)
+PRODUCT_COPY_FILES += \
+    vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
+endif
+ifneq ($(PRODUCT_DEVICE),bacon)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
