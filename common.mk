@@ -17,11 +17,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
 # Boot Animantion
-ifneq ($(PRODUCT_DEVICE),falcon)
-PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
-endif
-ifneq ($(PRODUCT_DEVICE),titan)
+ifneq ($(filter falcon titan,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
 endif
@@ -95,6 +91,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGE_OVERLAYS += \
 	vendor/aosparadox/overlay/common \
 	vendor/aosparadox/overlay/dictionaries
+
+# AOSParadox Version
+PAR_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
+PRODUCT_PROPERTY_OVERRIDES += ro.par.version =$(PAR_VERSION)
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
