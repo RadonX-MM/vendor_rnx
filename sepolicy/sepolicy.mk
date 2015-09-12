@@ -4,7 +4,7 @@
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/aosparadox/sepolicy
+    vendor/rnx/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file.te \

@@ -19,18 +19,18 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 # Boot Animantion
 ifneq ($(filter falcon titan,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
+    vendor/rnx/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
 endif
 ifneq ($(PRODUCT_DEVICE),bacon)
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
+    vendor/rnx/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    vendor/aosparadox/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/aosparadox/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/rnx/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/rnx/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -46,7 +46,8 @@ PRODUCT_PACKAGES += \
     LatinIME \
     Launcher3 \
     libemoji \
-    Terminal
+    Terminal \
+    SnapdragonAudio+
 
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
@@ -81,22 +82,27 @@ PRODUCT_PACKAGES += \
 
 # World APN list
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/rnx/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
 
 # Selective SPN list for operator number who has the problem.
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+    vendor/rnx/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
 
 # Overlays & Include LatinIME dictionaries
 PRODUCT_PACKAGE_OVERLAYS += \
-	vendor/aosparadox/overlay/common \
-	vendor/aosparadox/overlay/dictionaries
+	vendor/rnx/overlay/common \
+	vendor/rnx/overlay/dictionaries
 
-# AOSParadox Version
-PAR_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
-PRODUCT_PROPERTY_OVERRIDES += ro.par.version =$(PAR_VERSION)
+# RadonX Version
+RNX_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
+PRODUCT_PROPERTY_OVERRIDES += ro.rnx.version =$(PAR_VERSION)
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
+# Inherit sabermod vendor
+SM_VENDOR := vendor/sm
+include $(SM_VENDOR)/Main.mk
+
 $(call inherit-product-if-exists, vendor/extra/product.mk)
+ 

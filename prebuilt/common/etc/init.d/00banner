@@ -4,4 +4,4 @@
 #
 L="log -p i -t par"
 
-$L "Welcome to Android `getprop ro.build.version.release` / AOSParadox Project";
+$L "Welcome to Android `getprop ro.build.version.release` / RadonX ROM!";
