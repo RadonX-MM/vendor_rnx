@@ -47,7 +47,8 @@ PRODUCT_PACKAGES += \
     Launcher3 \
     libemoji \
     Terminal \
-    SnapdragonAudio+
+    SnapdragonAudio+ \
+    SnapdragonCamera
 
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
