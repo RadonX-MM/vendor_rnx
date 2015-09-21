@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
     libemoji \
     Terminal \
     SnapdragonAudio+ \
-    SnapdragonCamera
+    Snap \
+    Eargasm
 
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
