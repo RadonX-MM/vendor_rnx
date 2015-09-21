@@ -100,6 +100,7 @@ ifdef OFFICIAL_RNX_BUILD
   RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL-$(BUILD_VERSION)
 else
   RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
+endif
 PRODUCT_PROPERTY_OVERRIDES += ro.rnx.version =$(RNX_VERSION)
 
 # by default, do not update the recovery with system updates
