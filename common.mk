@@ -26,6 +26,10 @@ PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
 
+# BitSyko Layers
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/com.lovejoy777.rroandlayersmanager.apk
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
