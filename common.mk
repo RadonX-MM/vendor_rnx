@@ -95,8 +95,12 @@ PRODUCT_PACKAGE_OVERLAYS += \
 	vendor/rnx/overlay/dictionaries
 
 # RadonX Version
-RNX_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
-PRODUCT_PROPERTY_OVERRIDES += ro.rnx.version =$(PAR_VERSION)
+BUILD_VERSION := "Beta 1"
+ifdef OFFICIAL_RNX_BUILD
+  RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL-$(BUILD_VERSION)
+else
+  RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
+PRODUCT_PROPERTY_OVERRIDES += ro.rnx.version =$(RNX_VERSION)
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
