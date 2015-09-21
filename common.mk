@@ -28,7 +28,7 @@ endif
 
 # BitSyko Layers
 PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/com.lovejoy777.rroandlayersmanager.apk
+    vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/LayersManager/LayersManager.apk
 
 # init.d support
 PRODUCT_COPY_FILES += \
