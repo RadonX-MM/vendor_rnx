@@ -120,7 +120,7 @@ SM_VENDOR := vendor/sm
 include $(SM_VENDOR)/Main.mk
 
 # SuperSU
-include $(SM_VENDOR/prebuilts/SuperSU/supersu.mk
+include $(SM_VENDOR)/prebuilts/SuperSU/supersu.mk
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)
  
