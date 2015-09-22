@@ -30,9 +30,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/LayersManager/LayersManager.apk
 
-# SuperSU
-include vendor/sm/prebuilts/SuperSU/supersu.mk
-
 # Snap Camera
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/app/Snap.apk:system/app/Snap/Snap.apk
@@ -121,6 +118,9 @@ PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 # Inherit sabermod vendor
 SM_VENDOR := vendor/sm
 include $(SM_VENDOR)/Main.mk
+
+# SuperSU
+include $(SM_VENDOR/prebuilts/SuperSU/supersu.mk
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)
  
