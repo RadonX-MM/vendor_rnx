@@ -30,6 +30,9 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/LayersManager/LayersManager.apk
 
+# SuperSU
+include vendor/sm/prebuilts/SuperSU/supersu.mk
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
