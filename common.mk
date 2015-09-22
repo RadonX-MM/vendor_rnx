@@ -33,6 +33,10 @@ PRODUCT_COPY_FILES += \
 # SuperSU
 include vendor/sm/prebuilts/SuperSU/supersu.mk
 
+# Snap Camera
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/app/Snap.apk:system/app/Snap/Snap.apk
+
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
