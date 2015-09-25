@@ -104,9 +104,9 @@ PRODUCT_PACKAGE_OVERLAYS += \
 	vendor/rnx/overlay/dictionaries
 
 # RadonX Version
-BUILD_VERSION := "Beta 1"
+BUILD_VERSION := Beta-1
 ifdef OFFICIAL_RNX_BUILD
-  RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL-$(BUILD_VERSION)
+  RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL_$(BUILD_VERSION)
 else
   RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
 endif
