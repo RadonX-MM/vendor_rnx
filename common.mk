@@ -110,7 +110,8 @@ ifdef OFFICIAL_RNX_BUILD
 else
   RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
 endif
-PRODUCT_PROPERTY_OVERRIDES += ro.rnx.version =$(RNX_VERSION)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.rnx.version=$(RNX_VERSION)
 
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
