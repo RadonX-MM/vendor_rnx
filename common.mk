@@ -105,6 +105,10 @@ endif
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.rnx.version=$(RNX_VERSION)
 
+# Install RadonOTA
+PRODUCT_PACKAGES += \
+	RadonOTA
+
 # by default, do not update the recovery with system updates
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
 
