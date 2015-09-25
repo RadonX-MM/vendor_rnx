@@ -26,14 +26,6 @@ PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
 
-# BitSyko Layers
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/app/com.lovejoy777.rroandlayersmanager.apk:system/app/LayersManager/LayersManager.apk
-
-# Snap Camera
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/app/Snap.apk:system/app/Snap/Snap.apk
-
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
