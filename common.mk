@@ -17,13 +17,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
 
 # Boot Animantion
-ifneq ($(filter falcon titan,$(TARGET_DEVICE)),)
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
-endif
 ifneq ($(PRODUCT_DEVICE),bacon)
 PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
+    vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
 endif
 
 # init.d support
