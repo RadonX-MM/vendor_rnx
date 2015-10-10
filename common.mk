@@ -21,7 +21,7 @@ ifneq ($(filter falcon titan,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
 endif
-ifneq ($(PRODUCT_DEVICE),bacon)
+ifneq ($(filter bacon,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
