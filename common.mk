@@ -25,6 +25,10 @@ ifneq ($(filter bacon,$(PRODUCT_DEVICE)),)
 PRODUCT_COPY_FILES += \
     vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
 endif
+ifneq ($(filter lux,$(PRODUCT_DEVICE)),)
+PRODUCT_COPY_FILES += \
+    vendor/aosparadox/prebuilt/common/media/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
+endif
 
 # init.d support
 PRODUCT_COPY_FILES += \
