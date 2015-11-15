@@ -1,0 +1,9 @@
+# Time services
+allow system_server time_daemon:unix_stream_socket connectto;
+
+allow system_server recovery_cache_file:dir rw_dir_perms;
+allow system_server recovery_cache_file:file create_file_perms;
+
+# Persistent properties
+allow system_server persist_property_file:dir rw_dir_perms;
+allow system_server persist_property_file:file { create_file_perms unlink };
