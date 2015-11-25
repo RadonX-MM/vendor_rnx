@@ -3,4 +3,4 @@
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/aosparadox/sepolicy
+    vendor/rnx/sepolicy

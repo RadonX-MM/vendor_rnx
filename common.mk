@@ -40,14 +40,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true \
     ro.layers.noIcon=noIcon
 
-# Packages
-PRODUCT_PACKAGES += \
-    Launcher2 \
-    libemoji
-
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/aosparadox/overlay/common
+    vendor/rnx/overlay/common
+
+# Boot Animantion
+ifneq ($(PRODUCT_DEVICE),bacon)
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
+endif
+
+# init.d support
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
+    vendor/rnx/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/rnx/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -55,30 +62,97 @@ PRODUCT_COPY_FILES += \
 
 # Media effects
 PRODUCT_COPY_FILES +=  \
-    vendor/aosparadox/prebuilt/common/media/LMspeed_508.emd:system/vendor/media/LMspeed_508.emd \
-    vendor/aosparadox/prebuilt/common/media/PFFprec_600.emd:system/vendor/media/PFFprec_600.emd
+    vendor/rnx/prebuilt/common/media/LMspeed_508.emd:system/vendor/media/LMspeed_508.emd \
+    vendor/rnx/prebuilt/common/media/PFFprec_600.emd:system/vendor/media/PFFprec_600.emd
 
 # APN list
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/rnx/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
  
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aosparadox/prebuilt/common/addon.d/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/aosparadox/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/aosparadox/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
-    vendor/aosparadox/prebuilt/common/etc/backup.conf:system/etc/backup.conf
+    vendor/rnx/prebuilt/common/addon.d/99-backup.sh:system/addon.d/99-backup.sh \
+    vendor/rnx/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/rnx/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
+    vendor/rnx/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
-# Boot Animantion
-ifneq ($(filter falcon titan,$(TARGET_DEVICE)),)
-PRODUCT_COPY_FILES += \
-    vendor/aosparadox/bootanimation/AOSParadox_720_bootanimation.zip:system/media/bootanimation.zip
-endif
-ifneq ($(filter bacon lux,$(PRODUCT_DEVICE)),)
-PRODUCT_COPY_FILES += \
-    vendor/aosparadox/bootanimation/AOSParadox_1080_bootanimation.zip:system/media/bootanimation.zip
-endif
+# Misc packages
+PRODUCT_PACKAGES += \
+    BluetoothExt \
+    LatinIME \
+    SlimLLauncher \
+    libemoji \
+    Terminal \
+    SnapdragonAudio+ \
+    SnapdragonCamera 
 
-# AOSParadox Version
-PAR_VERSION := $(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
-PRODUCT_PROPERTY_OVERRIDES += ro.par.version =$(PAR_VERSION)
+# Stagefright FFMPEG plugin
+PRODUCT_PACKAGES += \
+    libstagefright_soft_ffmpegadec \
+    libstagefright_soft_ffmpegvdec \
+    libFFmpegExtractor \
+    libnamparser
+
+# Live Wallpapers and more Daydream packages
+PRODUCT_PACKAGES += \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    PhotoTable \
+    SoundRecorder \
+    PhotoPhase
+
+# Telephony packages
+PRODUCT_PACKAGES += \
+    CellBroadcastReceiver \
+    Mms \
+    Stk
+
+# Mms depends on SoundRecorder for recorded audio messages
+PRODUCT_PACKAGES += \
+    SoundRecorder
+
+# GNU tar
+PRODUCT_PACKAGES += \
+    tar \
+    tar_static
+
+# World APN list
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+
+# Selective SPN list for operator number who has the problem.
+PRODUCT_COPY_FILES += \
+    vendor/rnx/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+
+# Overlays & Include LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += \
+	vendor/rnx/overlay/common \
+	vendor/rnx/overlay/dictionaries
+
+# RadonX Version
+BUILD_VERSION := MM-ALPHA_1
+ifdef OFFICIAL_RNX_BUILD
+  RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL-$(BUILD_VERSION)
+else
+  RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
+endif
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.rnx.version=$(RNX_VERSION)
+
+# Install RadonOTA
+#PRODUCT_PACKAGES += \
+#	RadonOTA
+
+# by default, do not update the recovery with system updates
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
+
+# Inherit sabermod vendor
+SM_VENDOR := vendor/sm
+include $(SM_VENDOR)/Main.mk
+
+# SuperSU
+include $(SM_VENDOR)/prebuilts/SuperSU/supersu.mk
+
+$(call inherit-product-if-exists, vendor/extra/product.mk)
+ 
