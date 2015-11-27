@@ -40,21 +40,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=true \
     ro.layers.noIcon=noIcon
 
+# Packages
+PRODUCT_PACKAGES += \
+    Launcher2 \
+    libemoji
+
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/rnx/overlay/common
-
-# Boot Animantion
-ifneq ($(PRODUCT_DEVICE),bacon)
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
-endif
-
-# init.d support
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    vendor/rnx/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/rnx/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -76,64 +69,16 @@ PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
     vendor/rnx/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
-# Misc packages
-PRODUCT_PACKAGES += \
-    BluetoothExt \
-    LatinIME \
-    SlimLLauncher \
-    libemoji \
-    Terminal \
-    SnapdragonAudio+ \
-    SnapdragonCamera 
-
-# Stagefright FFMPEG plugin
-PRODUCT_PACKAGES += \
-    libstagefright_soft_ffmpegadec \
-    libstagefright_soft_ffmpegvdec \
-    libFFmpegExtractor \
-    libnamparser
-
-# Live Wallpapers and more Daydream packages
-PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    PhotoTable \
-    SoundRecorder \
-    PhotoPhase
-
-# Telephony packages
-PRODUCT_PACKAGES += \
-    CellBroadcastReceiver \
-    Mms \
-    Stk
-
-# Mms depends on SoundRecorder for recorded audio messages
-PRODUCT_PACKAGES += \
-    SoundRecorder
-
-# GNU tar
-PRODUCT_PACKAGES += \
-    tar \
-    tar_static
-
-# World APN list
+# Boot Animantion
+ifneq ($(PRODUCT_DEVICE),bacon)
 PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
+    vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
+endif
 
-# Selective SPN list for operator number who has the problem.
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/etc/selective-spn-conf.xml:system/etc/selective-spn-conf.xml
+RNX_BUILD_ID := 6.0_Alpha-1
 
-# Overlays & Include LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += \
-	vendor/rnx/overlay/common \
-	vendor/rnx/overlay/dictionaries
-
-# RadonX Version
-BUILD_VERSION := MM-ALPHA_1
 ifdef OFFICIAL_RNX_BUILD
-  RNX_VERSION := $(TARGET_DEVICE)-OFFICIAL-$(BUILD_VERSION)
+  RNX_VERSION := RadonX-OFFICIAL-$(RNX_BUILD_ID)
 else
   RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
 endif
@@ -144,15 +89,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #PRODUCT_PACKAGES += \
 #	RadonOTA
 
-# by default, do not update the recovery with system updates
-PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
-
 # Inherit sabermod vendor
 SM_VENDOR := vendor/sm
 include $(SM_VENDOR)/Main.mk
 
 # SuperSU
-include $(SM_VENDOR)/prebuilts/SuperSU/supersu.mk
+include vendor/rnx/prebuilt/common/SuperSU/supersu.mk
 
 $(call inherit-product-if-exists, vendor/extra/product.mk)
  
