@@ -24,7 +24,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false \
     net.tethering.noprovisioning=true \
     persist.sys.dun.override=0 \
-    ro.build.selinux=1 \
+    ro.build.selinux=0\
     ro.adb.secure=0 \
     ro.error.receiver.system.apps=com.google.android.gms \
     ro.setupwizard.enterprise_mode=1 \
@@ -44,7 +44,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     SlimLauncher-Prebuilt \
     libemoji \
-    SlimFileManager \
+#    SlimFileManager \
     LayersManager \
     SnapdragonCamera \
     SnapdragonAudio+
