@@ -100,5 +100,8 @@ include $(SM_VENDOR)/Main.mk
 # SuperSU
 include vendor/rnx/prebuilt/common/SuperSU/supersu.mk
 
+# Disable building with Jack
+export ANDROID_COMPILE_WITH_JACK := false
+
 $(call inherit-product-if-exists, vendor/extra/product.mk)
  
