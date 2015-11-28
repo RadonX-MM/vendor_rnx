@@ -42,8 +42,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Packages
 PRODUCT_PACKAGES += \
-    Launcher2 \
-    libemoji
+    SlimLauncher \
+    libemoji \
+    SlimFileManager \
+    LayersManager \
+    SnapdragonCamera \
+    SnapdragonAudio+
 
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += \
