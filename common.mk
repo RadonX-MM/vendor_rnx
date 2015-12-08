@@ -78,10 +78,8 @@ PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
 # Boot Animantion
-ifneq ($(PRODUCT_DEVICE),bacon)
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
-endif
 
 RNX_BUILD_ID := 6.0_Alpha-1
 
