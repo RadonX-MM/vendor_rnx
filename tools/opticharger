@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Super-mega LiquidSmooth opticharger of doom
+# Sooper dooper with a big tooper
 # Shrinks apks by running pngquant or pngcrush or optipng or pngout on png images
 #
 
@@ -73,7 +73,13 @@ then
         pngout $1
     }
 else
-    echo -e ${red}"Please install pngquant, pngcrush, optipng, or pngout"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
+    echo -e ${red}"INSTALL PNGQUANT DICKBAG"${txtrst}
     exit 1;
 fi
 
