@@ -60,3 +60,9 @@ PRODUCT_COPY_FILES += \
 
 # Add our overlays
 PRODUCT_PACKAGE_OVERLAYS += vendor/rnx/overlay/common
+
+ifdef OFFICIAL_RNX_BUILD
+  SM_VENDOR := vendor/sm
+  include $(SM_VENDOR)/Main.mk
+endif
+
