@@ -56,6 +56,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     SlimLauncher-Prebuilt
 
+# Snapdragon Audio+
+PRODUCT_COPY_FILES += \
+    SnapdragonAudio+
+
 # Additional packages
 -include vendor/rnx/config/packages.mk
 
