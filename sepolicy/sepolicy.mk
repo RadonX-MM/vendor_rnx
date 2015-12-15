@@ -4,4 +4,4 @@
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/omni/sepolicy
+    vendor/rnx/sepolicy

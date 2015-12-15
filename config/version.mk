@@ -1,37 +1,17 @@
 # Versioning of the ROM
 
-ifdef BUILDTYPE_NIGHTLY
-    ROM_BUILDTYPE := NIGHTLY
-endif
-ifdef BUILDTYPE_AUTOTEST
-    ROM_BUILDTYPE := AUTOTEST
-endif
-ifdef BUILDTYPE_EXPERIMENTAL
-    ROM_BUILDTYPE := EXPERIMENTAL
-endif
-ifdef BUILDTYPE_RELEASE
-    ROM_BUILDTYPE := RELEASE
-endif
+RNX_BUILD_ID := 6.0.1_Alpha-1
 
-ifndef ROM_BUILDTYPE
-    ROM_BUILDTYPE := HOMEMADE
-endif
-
-TARGET_PRODUCT_SHORT := $(TARGET_PRODUCT)
-TARGET_PRODUCT_SHORT := $(subst omni_,,$(TARGET_PRODUCT_SHORT))
-
-# Build the final version string
-ifdef BUILDTYPE_RELEASE
-    ROM_VERSION := $(PLATFORM_VERSION)-$(TARGET_PRODUCT_SHORT)
+ifdef OFFICIAL_RNX_BUILD
+  RNX_VERSION := RadonX-OFFICIAL-$(RNX_BUILD_ID)
 else
-ifeq ($(ROM_BUILDTIME_LOCAL),y)
-    ROM_VERSION := $(PLATFORM_VERSION)-$(shell date +%Y%m%d-%H%M%z)-$(TARGET_PRODUCT_SHORT)-$(ROM_BUILDTYPE)
-else
-    ROM_VERSION := $(PLATFORM_VERSION)-$(shell date -u +%Y%m%d)-$(TARGET_PRODUCT_SHORT)-$(ROM_BUILDTYPE)
-endif
+  RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
 endif
 
 # Apply it to build.prop
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=OmniROM-$(ROM_VERSION) \
-    ro.omni.version=$(ROM_VERSION)
+    ro.modversion=RadonX-$(RNX_VERSION) \
+    ro.rnx.version=$(RNX_VERSION)
+
+ROM_VERSION := $(RNX_VERSION)
+
