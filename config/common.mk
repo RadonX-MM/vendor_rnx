@@ -52,6 +52,10 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_COPY_FILES += \
 #    vendor/rnx/prebuilt/app/DashClock.apk:system/app/DashClock.apk
 
+# SlimLauncher
+PRODUCT_COPY_FILES += \
+    SlimLauncher-Prebuilt
+
 # Additional packages
 -include vendor/rnx/config/packages.mk
 
