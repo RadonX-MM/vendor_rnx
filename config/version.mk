@@ -3,7 +3,7 @@
 RNX_BUILD_ID := 6.0.1_Alpha-1
 
 ifdef OFFICIAL_RNX_BUILD
-  RNX_VERSION := RadonX-OFFICIAL-$(RNX_BUILD_ID)
+  RNX_VERSION := OFFICIAL-$(RNX_BUILD_ID)
 else
   RNX_VERSION := UNOFFICIAL-$(TARGET_DEVICE)-$(shell date -u +%Y%m%d)
 endif
