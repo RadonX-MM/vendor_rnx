@@ -66,3 +66,5 @@ ifdef OFFICIAL_RNX_BUILD
   include $(SM_VENDOR)/Main.mk
 endif
 
+# Disable building with Jack
+export ANDROID_COMPILE_WITH_JACK := false
