@@ -53,11 +53,11 @@ PRODUCT_COPY_FILES += \
 #    vendor/rnx/prebuilt/app/DashClock.apk:system/app/DashClock.apk
 
 # SlimLauncher
-PRODUCT_COPY_FILES += \
+PRODUCT_PACKAGES += \
     SlimLauncher-Prebuilt
 
 # Snapdragon Audio+
-PRODUCT_COPY_FILES += \
+PRODUCT_PACKAGES += \
     SnapdragonAudio+
 
 # Additional packages
