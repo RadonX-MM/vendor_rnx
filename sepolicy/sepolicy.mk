@@ -1,6 +1,4 @@
 #
 # This policy configuration will be used by all products
 #
-
-BOARD_SEPOLICY_DIRS += \
-    vendor/rnx/sepolicy
+# Place holder

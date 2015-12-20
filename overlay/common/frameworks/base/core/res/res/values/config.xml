@@ -46,22 +46,8 @@
     <string name="widget_default_package_name">com.google.android.deskclock</string>
     <string name="widget_default_class_name">com.android.alarmclock.DigitalAppWidgetProvider</string>
 
-    <!-- set default messaging app to googles messenger -->
-    <string name="default_sms_application">com.google.android.apps.messaging</string>
-
     <!-- set defaults for google services -->
     <string name="config_appsAuthorizedForSharedAccounts">;com.android.vending;com.android.settings;</string>
     <string name="config_persistentDataPackageName">com.google.android.gms</string>
-    
-        <!-- Screen brightness when dozing. -->
-    <integer name="config_screenBrightnessDoze">17</integer>
-    <!-- Dream of notifications -->
-    <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
-    <bool name="config_dozeAfterScreenOff">true</bool>
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
-    <!-- If true, the screen can be rotated via the accelerometer in all 4 rotations as the default behavior. -->
-    <bool name="config_allowAllRotations">false</bool>
-    <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveNotificationLed">true</bool>
 
 </resources>
