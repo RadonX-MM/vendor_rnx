@@ -68,13 +68,6 @@ PRODUCT_COPY_FILES +=  \
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/etc/apns-conf.xml:system/etc/apns-conf.xml
  
-# Backup Tool
-PRODUCT_COPY_FILES += \
-    vendor/rnx/prebuilt/common/addon.d/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/rnx/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/rnx/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
-    vendor/rnx/prebuilt/common/etc/backup.conf:system/etc/backup.conf
-
 # Boot Animantion
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/media/RadonX-Bootanimation-1080.zip:system/media/bootanimation.zip
