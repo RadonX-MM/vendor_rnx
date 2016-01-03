@@ -1,0 +1,2 @@
+allow platform_app recovery_cache_file:dir { search write add_name };
+allow platform_app recovery_cache_file:file { create write open getattr };

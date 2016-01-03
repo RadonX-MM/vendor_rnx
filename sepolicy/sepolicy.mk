@@ -1,4 +1,7 @@
 #
-# This policy configuration will be used by all products
+# This policy configuration will be used by all products that
+# inherit from CM
 #
-# Place holder
+
+BOARD_SEPOLICY_DIRS += \
+    vendor/aosparadox/sepolicy
