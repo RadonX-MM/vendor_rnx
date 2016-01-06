@@ -51,6 +51,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGE_OVERLAYS += \
     vendor/rnx/overlay/common
 
+# SEPolicy
+include vendor/rnx/sepolicy/sepolicy.mk
+
 # Google DNS server
 PRODUCT_COPY_FILES += \
     vendor/rnx/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
